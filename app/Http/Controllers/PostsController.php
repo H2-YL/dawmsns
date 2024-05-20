@@ -47,9 +47,9 @@ class PostsController extends Controller
     }
 
     // 更新画面のメソッド
-    public function updateForm($id) {
+    public function updateForm($postId) {
         $post = DB::table('posts') // postsテーブル呼び出し
-            ->where('id', $id) // どこにある情報？→idのカラムが$idのレコードを取得
+            ->where('id', $postId) // どこにある情報？→idのカラムが$idのレコードを取得
             ->first(); // 1行のデータのみ取得
         return view('updateForm', compact('post'));
         // 情報取得した上でupdateForm.blade.phpを呼び出す
@@ -76,9 +76,9 @@ class PostsController extends Controller
 
     // 投稿削除のメソッド
     public function delete(Request $request) {
-    $id = $request->input('id');
+    $postId = $request->input('id');
     DB::table('posts')
-        ->where('id', $id)
+        ->where('id', $postId)
         ->delete();
 
         return redirect('/top');
@@ -86,14 +86,28 @@ class PostsController extends Controller
     // idに準じた情報をpostsテーブルから削除する。
     // 最終的にindex画面に戻る
 
-    public function followList() {
+    public function search() {
         // dd(1);
-        return view('followList');
-        // データベースを接続しデータ取得。postsテーブルを指定し、->getでデータをまとめて取得
+        $users = DB::table('users')->get();
+        return view('search.search', ['users' => $users]);
     }
 
+    public function followList() {
+        // dd(1);
+        return view('follows.followList');
+    }
 
+        public function followerList() {
+        // dd(1);
+        return view('follows.followerList');
+    }
 
+        public function profile() {
+        // dd(1);
+        return view('profiles.profile');
+    }
+
+    // bladeファイルを表示させる際にのみ、相対パスも一緒に記述しなくてはならない。
 
     // フォロワーの検索に関してはindexのメソッドで使われているものの応用でOK。
     // 厳密にはtableのpostsをusersにすれば良い。

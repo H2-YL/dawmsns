@@ -25,8 +25,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ url('/top') }}">
+                    <img src="{{ asset('images/icons/main_logo.png') }}" alt="main_logo.png">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -37,7 +37,10 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
-                    <a href="follow-list">フォローリスト</a>
+                    <a href="follow-list">フォローリスト　</a>
+                    <a href="follower-list">フォロワーリスト　</a>
+                    <a href="search">ユーザー検索　</a>
+                    <a href="profile">ログインユーザープロフィール　</a>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -61,10 +64,16 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/top') }}">
+                                        {{ __('HOME') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('/profile') }}">
+                                        {{ __('プロフィール編集') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('ログアウト') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

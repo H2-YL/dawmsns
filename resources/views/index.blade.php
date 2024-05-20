@@ -4,7 +4,7 @@
   <div class='container'>
     <h1 class='page-header'>Laravelを使った投稿機能の実装</h1>
     <p class="pull-right">
-      <a class="btn btn-success" href="post/create-form">投稿する</a>
+      <a class="btn btn-success" href="post/create">投稿する</a>
     </p>
     <h2 class='page-header'>投稿一覧</h2>
     <table class='table table-hover'>
@@ -25,10 +25,10 @@
         <td>{{ $post->created_at }}</td> <!--登校日-->
         <td>{{ $post->updated_at }}</td> <!--更新日-->
         <td>
-          <a class="btn btn-primary" href="/post/{{ $post->id }}/update-form">更新</a>
+          <a class="btn btn-primary" href="/post/edit/{{ $post->id }}">更新</a>
         </td> <!--更新ボタン-->
         <td>
-          <form action="/post/delete" method="post" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
+          <form action="/post/delete/{{ $post->id }}" method="post" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
           @method('DELETE')
           @csrf
           <input type="hidden" name="id" value="{{ $post->id }}">
