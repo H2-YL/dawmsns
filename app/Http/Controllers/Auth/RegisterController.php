@@ -51,7 +51,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [ // バリデーションルール
             'name' => ['required', 'between:4,12', 'string'],
-            'email' => ['required',  'max:255', 'string', 'email', 'unique:users'],
+            'email' => ['required', 'max:255', 'string', 'email', 'unique:users'],
             'password' => ['required', 'between:8,128', 'string'],
             'password_confirmation' => ['required', 'same:password'],
         ],
@@ -95,6 +95,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            // パスワードはセキュリティ対策にハッシュ化した上で保存する
         ]);
     }
 }

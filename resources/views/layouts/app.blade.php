@@ -18,12 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel='stylesheet' href="{{ asset('/css/style.css') }}">
+    <link rel='stylesheet' href="{{ asset('css/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav id="header-color" class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/top') }}">
                     <img src="{{ asset('images/icons/main_logo.png') }}" alt="main_logo.png">
@@ -37,10 +37,6 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
-                    <a href="follow-list">フォローリスト　</a>
-                    <a href="follower-list">フォロワーリスト　</a>
-                    <a href="search">ユーザー検索　</a>
-                    <a href="profile">ログインユーザープロフィール　</a>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -67,7 +63,7 @@
                                     <a class="dropdown-item" href="{{ url('/top') }}">
                                         {{ __('HOME') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ url('/profile') }}">
+                                    <a class="dropdown-item" href="{{ url('/profile/edit') }}">
                                         {{ __('プロフィール編集') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -89,6 +85,7 @@
 
         <main class="py-4">
             @yield('content')
+            <!-- このbladeを親として、様々なbladeをsection、endsectionで囲った子の記述をここに記述するものとする。-->
         </main>
     </div>
 </body>
